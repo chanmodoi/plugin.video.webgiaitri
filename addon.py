@@ -13,9 +13,11 @@ from resources.lib import requests
 from resources.lib import CMDTools
 from resources.lib import CommonFunctions
 
+
 from resources import ngamvn
 from resources import haivainoi
 from resources import gioitre
+from resources import beatvn
 #?web
 base_url = sys.argv[0]
 
@@ -34,7 +36,8 @@ xbmc.log(str(args))
 
 webs=[{'name':ngamvn.get_Web_Name(), 'img':ngamvn.get_img_thumb_url()},
 	  {'name':haivainoi.get_Web_Name(), 'img':haivainoi.get_img_thumb_url()},
-	  {'name':gioitre.get_Web_Name(), 'img':gioitre.get_img_thumb_url()}]
+	  {'name':gioitre.get_Web_Name(), 'img':gioitre.get_img_thumb_url()},
+	  {'name':beatvn.get_Web_Name(), 'img':beatvn.get_img_thumb_url()}]
 if web==None:
 	for w in webs:
 		li = xbmcgui.ListItem(w['name'], iconImage=w['img'])
@@ -48,3 +51,5 @@ elif web[0]==haivainoi.get_Web_Name():
 	haivainoi.view()
 elif web[0]==gioitre.get_Web_Name():	
 	gioitre.view()
+elif web[0]==beatvn.get_Web_Name():	
+	beatvn.view()

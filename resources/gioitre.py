@@ -22,8 +22,22 @@ def get_Web_Name():
 	return web_name
 def get_img_thumb_url():
 	return CMDTools.get_path_img('resources/media/gioitre.png')
-def view():	
+def show_photos(url):
+	common = CommonFunctions
+	r = requests.get('http://gioitre.net'+url)
+	html = r.text
+	div_contentDeatil=common.parseDOM(html, name="div", attrs = {"class":"contentDeatil"})
+	#p_styles=common.parseDOM(html, name="p", attrs = {"class":"separator"})
+	imgs=common.parseDOM(div_contentDeatil, name="img", ret="src")		
+	for img in imgs:				
+		li = xbmcgui.ListItem(label="",thumbnailImage=img)
+		li.setInfo(type='image', infoLabels={'Title': ''})
+		xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=img,listitem=li,isFolder=False)        
+	xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
+    
+def view():	
+	#xbmc.executebuiltin("SlideShow(,,notrandom)")
 	addon_handle = int(sys.argv[1])
 
 	addon       = xbmcaddon.Addon()
@@ -37,29 +51,21 @@ def view():
 	cat=args.get('cat', None)
 	page = args.get('page', None)
 	link = args.get('link', None)
+	show=args.get('show', None)
 	
 	catalogues=[{'label':'Video','id':'video'},
 				{'label':'Girl Xinh','id':'girl-xinh'}]
+	if (show!=None):
+		show_photos(show[0])
+		return
 	#play link
 	if link!=None:
+		#xbmc.executebuiltin("ClearSlideshow")    
+		
+		#xbmc.executebuiltin("SlideShow(,,)")
 		type = args.get('type', None)
-		if type[0]=='girl-xinh':
-			r = requests.get('http://gioitre.net'+link[0])
-			html = r.text
-			div_contentDeatil=common.parseDOM(html, name="div", attrs = {"class":"contentDeatil"})
-			p_styles=common.parseDOM(html, name="p", attrs = {"class":"separator"})
-			
-			play_list=xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
-			play_list.clear()
-			for p in p_styles:
-				#xbmc.log("p_styles:"+str(p).encode('utf-8'))				
-				img=common.parseDOM(p, name="a", ret="href")
-				if len(img)>0:
-					play_list.add(img[0])
-			#xbmc.Player().play(play_list)
-			#xbmc.SlideShow(play_list)
-			
-			xbmc.executebuiltin('SlideShow(['+'http://3.bp.blogspot.com/-DyIzIopGp5w/VemhuSNYjKI/AAAAAAAAVvw/z7F8brm2eF4/s1600/10424304_509281719224464_5377204222107731550_n.jpg'+'])')
+		if type[0]=='girl-xinh':			
+			xbmc.executebuiltin("SlideShow(%s,recursive,notrandom)" % CMDTools.build_url(base_url,{'web':get_Web_Name(), 'show':link[0]}))
 		elif type[0]=='video':
 			xbmc.Player().play("plugin://plugin.video.youtube/play/?video_id="+link[0])
 		return
@@ -91,7 +97,7 @@ def view():
 			li = xbmcgui.ListItem(img_alt[0])
 			
 			li.setThumbnailImage(img_src[0])
-			
+			li.setInfo(type='image',infoLabels="")
 			if cat[0]=='video':			
 				urlList = CMDTools.build_url(base_url,{'web':get_Web_Name(), 'link':img_src[0][26:-6], 'type':cat[0]})
 			elif cat[0]=='girl-xinh':	
@@ -104,7 +110,9 @@ def view():
 		urlList=CMDTools.build_url(base_url,{'web':web_name, 'cat':cat[0],'page': page+1});
 		xbmcplugin.addDirectoryItem(handle=addon_handle, url=urlList, listitem=li, isFolder=True)	
 		
-		xbmc.executebuiltin('Container.SetViewMode(501)')		 
+		xbmc.executebuiltin('Container.SetViewMode(501)')
+		#xbmc.executebuiltin("ClearSlideshow")		
+		#xbmc.executebuiltin("SlideShow(,,notrandom)")		
 		xbmcplugin.endOfDirectory(addon_handle)
 		return
 					
