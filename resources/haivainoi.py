@@ -40,14 +40,14 @@ def view():
 	urlBase = "www.haivainoi.com" 
 	url=urlBase
 	
-	catalogues=[{'label':'Home','id':'hot'},
+	catalogues=[{'label':'Video','id':'video'},
+				{'label':'Home','id':'hot'},
 				{'label':'\x42\xC3\xAC\x6E\x68\x20\x63\x68\xE1\xBB\x8D\x6E'.decode('utf-8'),'id':'fresh'},
 				{'label':'18+','id':'18'},
 				{'label':'\xC3\x81\x20\xC4\x91\xC3\xB9'.decode('utf-8'),'id':'adu'},
 				{'label':'Meme','id':'meme'},
 				{'label':'Girl xinh','id':'girlxinh'},
-				{'label':'\xE1\xBA\xA2\x6E\x68\x20\xC4\x91\xE1\xBB\x99\x6E\x67'.decode('utf-8'),'id':'anhdong'},
-				{'label':'Video','id':'video'}]
+				{'label':'\xE1\xBA\xA2\x6E\x68\x20\xC4\x91\xE1\xBB\x99\x6E\x67'.decode('utf-8'),'id':'anhdong'}]
 	#play link
 	if link!=None:
 		type = args.get('type', None)

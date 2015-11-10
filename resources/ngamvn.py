@@ -20,11 +20,11 @@ def get_img_thumb_url():
 	return CMDTools.get_path_img('resources/media/ngamvn.png')
 	
 def view():	
-	catalogues=[{'label':'Home','id':'/list/home/'},
+	catalogues=[{'label':'Clip','id':'/list/pl/clip/'},
+				{'label':'Home','id':'/list/home/'},
 				{'label':"\x4D\xE1\xBB\x9B\x69\x20\x6E\x68\xE1\xBA\xA5\x74".decode('utf-8'),'id':'/list/new/'},
 				{'label':'\x42\xC3\xAC\x6E\x68\x20\x63\x68\xE1\xBB\x8D\x6E'.decode('utf-8'),'id':'/list/vote/'},
 				{'label':'\xE1\xBA\xA2\x6E\x68\x20\xC4\x91\x61\x6E\x67\x20\x68\x6F\x74'.decode('utf-8'),'id':'/list/hot/'},
-				{'label':'Clip','id':'/list/pl/clip/'},
 				{'cat':'anh-vui-anh-che','label':'\xE1\xBA\xA2\x6E\x68\x20\x56\x75\x69\x20\x2D\x20\xE1\xBA\xA2\x6E\x68\x20\x43\x68\xE1\xBA\xBF'.decode('utf-8'),'id':'/list/pl/anh-vui-anh-che/'},
 				{'label':'\xE1\xBA\xA2\x6E\x68\x20\x47\x69\x72\x6C'.decode('utf-8'),'id':'/list/pl/anh-girl/'}]
 				

@@ -30,12 +30,12 @@ web = args.get('web', None)
 xbmc.log(str(args))
 
 #List Website
-webs=[{'name':ngamvn.get_Web_Name(), 'img':ngamvn.get_img_thumb_url()},
-	  {'name':haivainoi.get_Web_Name(), 'img':haivainoi.get_img_thumb_url()},
-	  {'name':gioitre.get_Web_Name(), 'img':gioitre.get_img_thumb_url()},	  
-	  {'name':xemvn.get_Web_Name(), 'img':xemvn.get_img_thumb_url()},
+webs=[{'name':xemvn.get_Web_Name(), 'img':xemvn.get_img_thumb_url()},	  
+	  {'name':gioitre.get_Web_Name(), 'img':gioitre.get_img_thumb_url()},	  	  
 	  {'name':talktv.get_Web_Name(), 'img':talktv.get_img_thumb_url()},
-	  {'name':facebook.get_Web_Name(), 'img':facebook.get_img_thumb_url()}]
+	  {'name':facebook.get_Web_Name(), 'img':facebook.get_img_thumb_url()},
+	  {'name':ngamvn.get_Web_Name(), 'img':ngamvn.get_img_thumb_url()},	  
+	  {'name':haivainoi.get_Web_Name(), 'img':haivainoi.get_img_thumb_url()}]
 
 #set view
 if web==None:
