@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+  <!-- General -->
+	<category label="32001">
+		<setting label="32033" type="folder" id="file" value="path_to_files"/>
+        <setting label="32011" type="text" id="talktv_url1" default=""/>
+		<setting label="32012" type="text" id="talktv_url2" default=""/>
+	</category>
+</settings>

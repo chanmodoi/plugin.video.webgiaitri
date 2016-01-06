@@ -13,6 +13,8 @@ from resources import xemvn
 from resources import talktv
 from resources import facebook
 
+import threading
+
 #?web
 base_url = sys.argv[0]
 
@@ -36,7 +38,9 @@ webs=[{'name':xemvn.get_Web_Name(), 'img':xemvn.get_img_thumb_url()},
 	  {'name':facebook.get_Web_Name(), 'img':facebook.get_img_thumb_url()},
 	  {'name':ngamvn.get_Web_Name(), 'img':ngamvn.get_img_thumb_url()},	  
 	  {'name':haivainoi.get_Web_Name(), 'img':haivainoi.get_img_thumb_url()}]
-
+	  
+#xbmcgui.Window(10000).setProperty("Hi","ABC") 
+#xbmc.log(str(xbmcgui.Window(10000).getProperty("Hi")))
 #set view
 if web==None:
 	for w in webs:

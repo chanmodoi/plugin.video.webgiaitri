@@ -23,14 +23,17 @@ def get_img_thumb_url():
 def show_photos(url):		
 	r = requests.get('http://gioitre.net'+url)
 	html = r.text	
-	soup=BeautifulSoup(html,'html5lib')
+	soup = BeautifulSoup(html,'html5lib')
 	div_contentDeatil=soup.find("div", attrs = {"class":"contentDeatil"})	
 	imgs=div_contentDeatil.findAll("img")
+	urls=[]
 	for img in imgs:						
 		img_src=img['src']
+		urls.append(img_src)
 		li = xbmcgui.ListItem(label="",thumbnailImage=img_src) 
 		li.setInfo(type='image', infoLabels={'Title': ''})
 		xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=img_src,listitem=li,isFolder=False)
+	CMDTools.download_list_image(urls,"G:\\")
 	xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
     
